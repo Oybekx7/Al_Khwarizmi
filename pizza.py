@@ -8,7 +8,6 @@ while True:
     size = input("\nEnter pizza size: ")
     if size == "done":
         break
-
     if size == "personal":
         prices = 7.00
     elif size == "medium":
