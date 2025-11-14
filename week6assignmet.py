@@ -3,7 +3,6 @@ def calculate_average_sales(sales_list):
         return 0
     return sum(sales_list) / len(sales_list)
 
-
 def get_employees_in_region(sales_data, region_name):
     lst = []
     for emp_id, region, sales in sales_data:
@@ -11,7 +10,6 @@ def get_employees_in_region(sales_data, region_name):
             lst.append(emp_id)
     lst.sort()
     return lst
-
 
 def find_top_salesperson(sales_data):
     best_id = None
@@ -38,13 +36,11 @@ def get_regional_sales_total(sales_data):
         out.append((k, v))
     return sorted(out)
 
-
 def analyze_sales_data(sales_data):
     top = find_top_salesperson(sales_data)
     north = get_employees_in_region(sales_data, "North")
     reg = get_regional_sales_total(sales_data)
     return (top, north, reg)
-
 
 sales_data = [
     ('E101', 'North', [50000, 60000, 55000]),
