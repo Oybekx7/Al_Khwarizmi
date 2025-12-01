@@ -32,18 +32,24 @@ def get_employees_in_region(sales_data, region_name):
     return region_employees
 
 def get_regional_sales_total(sales_data):
-    regional_totals = {}
-
+    # Lug'at o'rniga, natijani tuple'lar ro'yxatida saqlaymiz: 
+    # [('Region', Total), ...]
+    regional_summary = []
+    
     for _, region, quarterly_sales_list in sales_data:
         employee_total_sales = sum(quarterly_sales_list)
-
-        if region in regional_totals:
-            regional_totals[region] += employee_total_sales
-        else:
-            regional_totals[region] = employee_total_sales
-    
-    regional_summary = list(regional_totals.items())
-    regional_summary.sort()  
+        found = False
+        for i in range(len(regional_summary)):
+            current_region, current_total = regional_summary[i]
+            
+            if current_region == region:
+                new_total = current_total + employee_total_sales
+                regional_summary[i] = (region, new_total)
+                found = True
+                break
+        if not found:
+            regional_summary.append((region, employee_total_sales))
+    regional_summary.sort()
     return regional_summary
 
 def analyze_sales_data(sales_data):
